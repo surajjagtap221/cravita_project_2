@@ -69,7 +69,7 @@ resource "aws_internet_gateway" "blue_green_igw" {
 resource "aws_route_table" "blue_green_public_rt" {
   vpc_id = aws_vpc.blue_green_vpc.id
   route {
-    cidr_block = "0.0.0/0"
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.blue_green_igw.id
   }
     tags = {
