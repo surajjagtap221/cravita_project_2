@@ -1,5 +1,5 @@
-resource "aws_security_group" "blue_green_instance_sg" {
-  name        = "${var.project_name}-sg"
+resource "aws_security_group" "blue_green_ec2_instance_sg" {
+  name        = "${var.project_name}-instance-sg"
   description = "Security group for ${var.project_name}"
   vpc_id      = var.vpc_id
 
