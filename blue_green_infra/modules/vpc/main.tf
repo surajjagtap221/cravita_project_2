@@ -7,56 +7,58 @@ resource "aws_vpc" "blue_green_vpc" {
   }
 }
 resource "aws_subnet" "public_subnet_1" {
-  vpc_id            = aws_vpc.blue_green_vpc.id
-  cidr_block        = "10.0.0.0/24"
-  availability_zone = "us-east-1a"  
+  vpc_id                  = aws_vpc.blue_green_vpc.id
+  cidr_block              = "10.0.0.0/24"
+  availability_zone       = "us-east-1a"
+  map_public_ip_on_launch = true
   tags = {
     Name = "${var.project_name}-public-subnet-1"
   }
 }
 resource "aws_subnet" "public_subnet_2" {
-  vpc_id            = aws_vpc.blue_green_vpc.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-east-1b"  
-    tags = {
-        Name = "${var.project_name}-public-subnet-2"
-    }   
+  vpc_id                  = aws_vpc.blue_green_vpc.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "us-east-1b"
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "${var.project_name}-public-subnet-2"
+  }
 }
 
 resource "aws_subnet" "private_subnet_1" {
   vpc_id            = aws_vpc.blue_green_vpc.id
   cidr_block        = "10.0.2.0/24"
   availability_zone = "us-east-1a"
-    tags = {
-        Name = "${var.project_name}-private-subnet-1"
-    }
+  tags = {
+    Name = "${var.project_name}-private-subnet-1"
+  }
 }
 
 resource "aws_subnet" "private_subnet_2" {
   vpc_id            = aws_vpc.blue_green_vpc.id
   cidr_block        = "10.0.3.0/24"
   availability_zone = "us-east-1b"
-    tags = {
-        Name = "${var.project_name}-private-subnet-2"
-    }
+  tags = {
+    Name = "${var.project_name}-private-subnet-2"
+  }
 }
 
 resource "aws_subnet" "private_subnet_3" {
   vpc_id            = aws_vpc.blue_green_vpc.id
   cidr_block        = "10.0.4.0/24"
   availability_zone = "us-east-1c"
-    tags = {
-        Name = "${var.project_name}-private-subnet-3"
-    }  
+  tags = {
+    Name = "${var.project_name}-private-subnet-3"
+  }
 }
 
 resource "aws_subnet" "private_subnet_4" {
   vpc_id            = aws_vpc.blue_green_vpc.id
   cidr_block        = "10.0.5.0/24"
   availability_zone = "us-east-1d"
-    tags = {
-        Name = "${var.project_name}-private-subnet-4"
-    }
+  tags = {
+    Name = "${var.project_name}-private-subnet-4"
+  }
 }
 
 resource "aws_internet_gateway" "blue_green_igw" {
@@ -72,23 +74,23 @@ resource "aws_route_table" "blue_green_public_rt" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.blue_green_igw.id
   }
-    tags = {
-        Name = "${var.project_name}-public-rt"
-    }
+  tags = {
+    Name = "${var.project_name}-public-rt"
+  }
 }
 
 resource "aws_route_table" "blue_green_private_rt" {
   vpc_id = aws_vpc.blue_green_vpc.id
-    tags = {
-        Name = "${var.project_name}-private-rt"
-    }
+  tags = {
+    Name = "${var.project_name}-private-rt"
+  }
 }
 
 resource "aws_route_table" "blue_green_private_db_rt" {
   vpc_id = aws_vpc.blue_green_vpc.id
-    tags = {
-        Name = "${var.project_name}-db-private-rt"
-    }
+  tags = {
+    Name = "${var.project_name}-db-private-rt"
+  }
 }
 
 resource "aws_route_table_association" "public_subnet_1_association" {
