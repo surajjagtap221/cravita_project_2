@@ -33,7 +33,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 dir('blue_green_infra') {
-                    sh 'terraform apply -auto-approve'
+                    sh 'terraform destroy -auto-approve'
                 }
             }
         }
