@@ -16,7 +16,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 dir('blue_green_infra') {
-                    sh 'terraform init'
+                    sh 'terraform init --reconfigure'
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 dir('blue_green_infra') {
-                    sh 'terraform plan'
+                    sh 'terraform plan -lock=false'
                 }
             }
         }
