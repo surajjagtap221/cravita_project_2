@@ -28,6 +28,7 @@ module "sg" {
   source = "./modules/sg"
  
   #project_name = var.project_name
+  #vpc_id      = module.blue_green_vpc.vpc_id
 }
 
 # module for ec2_instance

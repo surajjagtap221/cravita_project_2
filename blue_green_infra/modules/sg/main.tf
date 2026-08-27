@@ -1,7 +1,7 @@
-resource "aws_security_group" "blue_green_sg" {
+/*resource "aws_security_group" "blue_green_sg" {
   name        = "${var.project_name}-sg"
   description = "Security group for ${var.project_name}"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 80
@@ -16,3 +16,4 @@ resource "aws_security_group" "blue_green_sg" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 }
+*/
