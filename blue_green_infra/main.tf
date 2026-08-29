@@ -10,7 +10,6 @@ terraform {
   }
 }
 
-
 provider "aws" {
   region = var.aws_region
 }
@@ -35,7 +34,19 @@ module "sg" {
 module "ec2_instance" {
   source = "./modules/ec2_instance"
 
-  # project_name = var.project_name
+  project_name    = var.project_name
+  vpc_id          = module.vpc.vpc_id
+  blue_ec2_sg_id  = module.sg.blue_ec2_tg_sg_id
+  green_ec2_sg_id = module.sg.green_ec2_tg_sg_id
+
+
+  public_subnet_1_id  = module.vpc.public_subnet_1_id
+  public_subnet_2_id  = module.vpc.public_subnet_2_id
+  private_subnet_1_id = module.vpc.private_subnet_1_id
+  private_subnet_2_id = module.vpc.private_subnet_2_id
+  private_subnet_3_id = module.vpc.private_subnet_3_id
+  private_subnet_4_id = module.vpc.private_subnet_4_id
+
 }
 
 # module for asg_alb_tg
